@@ -7,15 +7,15 @@
 *  tree.
 */
 
-'use strict';
+"use strict"
 
-const videoElement = document.querySelector('video');
-const audioInputSelect = document.querySelector('select#audioSource');
-const audioOutputSelect = document.querySelector('select#audioOutput');
-const videoSelect = document.querySelector('select#videoSource');
-const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
+const videoElement = document.querySelector("video")
+const audioInputSelect = document.querySelector("select#audioSource")
+const audioOutputSelect = document.querySelector("select#audioOutput")
+const videoSelect = document.querySelector("select#videoSource") 
+const selectors = [audioInputSelect, audioOutputSelect, videoSelect]
 
-audioOutputSelect.disabled = !('sinkId' in HTMLMediaElement.prototype)
+audioOutputSelect.disabled = !("sinkId" in HTMLMediaElement.prototype)
 
 function gotDevices(deviceInfos) {  // Handles being called several times to update labels. Preserve values.
   const values = selectors.map(select => select.value) // Replace each element in array with its own value
@@ -25,21 +25,21 @@ function gotDevices(deviceInfos) {  // Handles being called several times to upd
     }
   })
 
-  for (let i = 0; i !== deviceInfos.length; ++i) {
+  for (let i = 0  i !== deviceInfos.length  ++i) {
     const deviceInfo = deviceInfos[i]
-    const option = document.createElement('option')
-    option.value = deviceInfo.deviceId;
-    if (deviceInfo.kind === 'audioinput') {
+    const option = document.createElement("option")
+    option.value = deviceInfo.deviceId
+    if (deviceInfo.kind === "audioinput") {
       option.text = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`
       audioInputSelect.appendChild(option)
-    } else if (deviceInfo.kind === 'audiooutput') {
+    } else if (deviceInfo.kind === "audiooutput") {
       option.text = deviceInfo.label ||  `speaker ${audioOutputSelect.length + 1}`
       audioOutputSelect.appendChild(option)
-    } else if (deviceInfo.kind === 'videoinput') {
+    } else if (deviceInfo.kind === "videoinput") {
       option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`
       videoSelect.appendChild(option)
     } else {
-      console.log('Some other kind of source/device: ', deviceInfo)
+      console.log("Some other kind of source/device: ", deviceInfo)
     }
   }
   // Not sure why we do this, but it checks the array we just made against the values
@@ -55,39 +55,39 @@ navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError)
 
 // Attach audio output device to video element using device/sink ID.
 function attachSinkId(element, sinkId)  {
-  if(typeof elemend.sinkId !== 'undefined') {
+  if(typeof elemend.sinkId !== "undefined") {
     element.setSinkId(sinkId)
       .then(() => {
         console.log(`Success, audio output device attached: ${sinkId}`)
       })
       .catch(error =>{
-        let errorMessage = error;
-        if (error.name === 'SecurityError') {
+        let errorMessage = error
+        if (error.name === "SecurityError") {
           errorMessage = `You need to use HTTPS for selecting audio output device: ${error}`
         }
         console.log(errorMessage)
-        // Jump back to first output device in the list as it's the default.
+        // Jump back to first output device in the list as it"s the default.
         audioOutputSelect.selectedIndex = 0
       })
   } else {
-    console.warn('Browser does not support output device selection.')
+    console.warn("Browser does not support output device selection.")
   }
 }
 
 function changeAudioDestination() {
-  const audioDestination = audioOutputSelect.value;
-  attachSinkId(videoElement, audioDestination);
+  const audioDestination = audioOutputSelect.value
+  attachSinkId(videoElement, audioDestination)
 }
 
 function gotStream(stream) {
   window.stream = stream // make stream avbl to console
   videoElement.srcObject = stream
   // Refresh button list in case labels have become available
-  return navigator.mediaDevices.enumerateDevices();
+  return navigator.mediaDevices.enumerateDevices()
 }
 
 function handleError(error) {
-  console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name)
+  console.log("navigator.MediaDevices.getUserMedia error: ", error.message, error.name)
 }
 
 function start() {
@@ -106,9 +106,9 @@ function start() {
   navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError)
 }
 
-audioInputSelect.onchange = start;
-audioOutputSelect.onchange = changeAudioDestination;
+audioInputSelect.onchange = start
+audioOutputSelect.onchange = changeAudioDestination
 
-videoSelect.onchange = start;
+videoSelect.onchange = start
 
-start();
+start()
