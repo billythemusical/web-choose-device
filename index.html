@@ -46,18 +46,17 @@
 <div id="container">
 
 
-    <h1><a href="//webrtc.github.io/samples" title="WebRTC samples homepage">WebRTC samples</a><span>Select sources &amp; outputs</span>
+    <h1><a href="//webrtc.github.io/samples" title="WebRTC samples homepage">WebRTC samples</a><span>Select sources &amp: outputs</span>
       </h1>
 
-    <p>Get available audio, video sources and audio output devices from <code>mediaDevices.enumerateDevices()</code>
-      then set the source of <code>getUserMedia()</code> using a <code>deviceId</code> constraint.</p>
+    <p>Get available audio, video sources and audio output devices from <code>mediaDevices.enumerateDevices()</code> then set the source of <code>getUserMedia()</code> using a <code>deviceId</code> constraint.</p>
 
     <div class="select">
-      <lable for="audioSource">Audio input source: </label><select id="audioSource"></select>
+      <label for="audioSource">Audio input source: </label><select id="audioSource"></select>
     </div>
 
     <div class="select">
-      <label for="audioOutput">Audio input destinaton: </label><select id="audioOutput">
+      <label for="audioOutput">Audio input destinaton: </label><select id="audioOutput"></select>
     </div>
 
     <div class="select">
@@ -66,7 +65,7 @@
 
     <video id="video" playsinline autoplay></video>
 
-    <p class="small"><b>Note:</b> If you hear feedback, turn down your speakers or move the mic away from them.</p>
+    <p class="small"><b>Note:</b>If you hear feedback, turn down your speakers or move the mic away from them.</p>
 
 </div>
 
