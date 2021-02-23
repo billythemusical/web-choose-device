@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
+<head>
+
+  <meta charset='utf-8'>
+  <meta name='description' content='WebRTC code samples'>
+  <meta name='viewport' content='width=device-width, user-scalable=yes, intial-scale=1, maximum-scale=1'>
+  <meta itemprop='description' content="Client-side WebRTC code samples">
+  <!-- <meta itemprop='image' content="../../../images/webrtc-icon-192x192.png"> -->
+  <meta name='mobile-web-app-capable' content='yes'>
+  <meta id='theme-color' name='theme-color' content='#ffffff'>
+
+  <base target="_blank">
+
+  <title>Select audio and video sources</title>
+
+  <link href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' href='main.css'>
+
+  <style>
+    div.select {
+      display: inline-block;
+      margin: 0 0 1em 0;
+    }
+
+    p.small {
+      font-size: 0.7em;
+    }
+
+    label {
+      width: 12em;
+      display: inline-block;
+    }
+  </style>
+
+</head>
+
+<body>
+<div id='container'>
+
+
+    <h1><a href='//webrtc.github.io/samples' title="WebRTC samples homepage">WebRTC samples</a><span>Select sources &amp; outputs</span>
+      </h1>
+
+    <p>Get available audio, video sources and audio output devices from <code>mediaDevices.enumerateDevices()</code>
+      then set the source of <code>getUserMedia()</code> using a <code>deviceId</code> constraint.</p>
+
+    <div class="select">
+      <lable for='audioSource'>Audio input source: </lable><select id='audioSource'></select>
+    </div>
+
+    <div class="select">
+      <label for='audioOutput'>Audio input destinaton: </label><select id='audioOutput'>
+    </div>
+
+    <div class='select'>
+      <label for='videoSource'>Video source: </label><select id="videoSource"></select>
+    </div>
+
+    <video id="video" playsinline autoplay></video>
+
+    <p class='small'><b>Note:</b> If you hear feedback, turn down your speakers or move the mic away from them.</p>
+
+</div>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="main.js" async></script>
+
+</body>
+</html>
